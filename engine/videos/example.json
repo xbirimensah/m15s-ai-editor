@@ -1,0 +1,190 @@
+{
+  "video": "cut/example.mp4",
+  "durationInFrames": 1200,
+  "fps": 30,
+  "theme": {
+    "bg": "#16121C",
+    "ink": "#F7F4EF",
+    "accent": "#D4AF37",
+    "accent2": "#C9A961",
+    "capActive": "#D4AF37",
+    "serif": "Playfair Display",
+    "sans": "Plus Jakarta Sans"
+  },
+  "words": [
+    {
+      "w": "This",
+      "s": 0.12,
+      "e": 0.3
+    },
+    {
+      "w": "changes",
+      "s": 0.32,
+      "e": 0.7
+    },
+    {
+      "w": "everything.",
+      "s": 0.72,
+      "e": 1.4
+    },
+    {
+      "w": "Three",
+      "s": 3.1,
+      "e": 3.35
+    },
+    {
+      "w": "things",
+      "s": 3.35,
+      "e": 3.7
+    },
+    {
+      "w": "you",
+      "s": 3.72,
+      "e": 3.85
+    },
+    {
+      "w": "need",
+      "s": 3.85,
+      "e": 4.05
+    },
+    {
+      "w": "to",
+      "s": 4.05,
+      "e": 4.15
+    },
+    {
+      "w": "know.",
+      "s": 4.15,
+      "e": 4.6
+    }
+  ],
+  "captions": {
+    "enabled": true
+  },
+  "music": null,
+  "beats": [
+    {
+      "type": "hookbar",
+      "from": 0,
+      "dur": 90,
+      "text": "This changes everything."
+    },
+    {
+      "type": "kicker",
+      "from": 90,
+      "dur": 1110,
+      "text": "The core principle",
+      "align": "center"
+    },
+    {
+      "type": "nametag",
+      "from": 90,
+      "dur": 140,
+      "name": "Alex",
+      "sub": "Coach · @examplechannel",
+      "side": "left"
+    },
+    {
+      "type": "panel",
+      "from": 250,
+      "dur": 240,
+      "position": "top",
+      "side": "right",
+      "icon": "shield",
+      "eyebrow": "The short version",
+      "title": "Three things matter",
+      "rows": [
+        {
+          "text": "Point one",
+          "at": 275,
+          "icon": "check"
+        },
+        {
+          "text": "Point two",
+          "at": 320,
+          "icon": "check"
+        },
+        {
+          "text": "Point three, the most important",
+          "at": 365,
+          "icon": "arrow-right"
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "from": 510,
+      "dur": 170,
+      "kind": "versus",
+      "title": "Myth vs. reality",
+      "left": {
+        "label": "\"More is better\"",
+        "icon": "warning"
+      },
+      "right": {
+        "label": "Consistency beats volume",
+        "icon": "chart-up"
+      },
+      "verdict": "right",
+      "verdictAt": 600
+    },
+    {
+      "type": "takeover",
+      "from": 690,
+      "dur": 140,
+      "eyebrow": "Remember one thing",
+      "lines": [
+        "Not harder.",
+        "*Smarter.*"
+      ],
+      "sub": "The difference is the system.",
+      "icons": [
+        "brain",
+        "clock",
+        "bolt"
+      ]
+    },
+    {
+      "type": "diagram",
+      "from": 850,
+      "dur": 180,
+      "kind": "flow",
+      "title": "How to apply it",
+      "steps": [
+        {
+          "label": "Analyze",
+          "icon": "search",
+          "at": 872
+        },
+        {
+          "label": "Change one thing",
+          "icon": "bolt",
+          "at": 920
+        },
+        {
+          "label": "Measure for 4 weeks",
+          "icon": "calendar",
+          "at": 968
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "from": 1040,
+      "dur": 100,
+      "value": "82%",
+      "label": "In practice",
+      "sub": "see exactly this problem"
+    },
+    {
+      "type": "endcard",
+      "from": 1140,
+      "dur": 60,
+      "icon": "check",
+      "title": "Start now",
+      "sub": "Free",
+      "cta": "Link in bio"
+    }
+  ],
+  "locale": "en-US"
+}

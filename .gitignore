@@ -1,0 +1,22 @@
+# Personal data lives in ~/.m15s-ai-editor, media and renders in the workspace. Belt and braces
+# (anchored to the root: macOS is case-insensitive, so TASTE.md would also hide references/taste.md):
+/creator.yaml
+/taste.json
+/TASTE.md
+/terms.txt
+/private-terms.txt
+/broll-style.md
+.env
+*.env
+
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+out/
+work/
+renders/
+*.mp4
+*.mov
+*.wav
+*.mp3

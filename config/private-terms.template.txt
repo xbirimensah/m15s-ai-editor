@@ -1,0 +1,3 @@
+# Words that must never reach the public repo, one per line: your name, handles, clients,
+# product names, private folder names. tools/privacy_check.py and the pre-commit hook block them.
+# Your creator.yaml name, handle, website, CTA link and brand colours are added automatically.

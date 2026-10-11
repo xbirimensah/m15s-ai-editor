@@ -1,0 +1,26 @@
+{
+  "name": "m15s-ai-editor-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion overlay engine for talking-head edits: one continuous video track plus editorial beats",
+  "scripts": {
+    "dev": "remotion studio",
+    "render916": "remotion render Overlay916 --concurrency=2",
+    "render169": "remotion render Overlay169 --concurrency=2"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.0",
+    "@remotion/renderer": "^4.0.0",
+    "gsap": "^3.13.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "hyperframes": "^0.8.147",
+    "typescript": "^5.5.0"
+  }
+}

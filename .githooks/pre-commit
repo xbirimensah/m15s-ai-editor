@@ -1,0 +1,5 @@
+#!/bin/bash
+# Blocks a commit that would publish anything personal (tools/privacy_check.py).
+ROOT="$(git rev-parse --show-toplevel)"
+PY="$(python3 "$ROOT/tools/config.py" get python 2>/dev/null || echo python3)"
+exec "$PY" "$ROOT/tools/privacy_check.py" --staged --root "$ROOT"

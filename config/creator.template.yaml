@@ -1,0 +1,65 @@
+# =============================================================================
+# creator.yaml: who the videos are for. Lives in ~/.m15s-ai-editor/, never in the repo.
+#
+# Fill it by hand, or let the skill's intake do it: paste the creator's Instagram and website,
+# it derives brand colours and fonts and asks you to confirm.
+# =============================================================================
+
+creator:
+  name: ""                 # full name as it may appear on screen (name tag, end card)
+  instagram: ""            # handle or URL, a source for the brand look
+  website: ""              # optional, the second source
+
+niche: ""                  # one sentence, e.g. "skin health for women over 30"
+language: de               # language of the footage: de, en, ... or auto
+format: "916"              # "916" (Reels/Shorts 1080x1920) or "169" (YouTube/VSL 1920x1080)
+
+# Brand: hex colours and GOOGLE FONTS family names (exact spelling, e.g. "Playfair Display").
+brand:
+  colors:
+    bg: "#16121C"          # ground of full-screen cutaway scenes
+    ink: "#F7F4EF"         # text on that ground
+    accent: "#D4AF37"      # THE brand colour (bars, pills, CTA)
+    accent2: "#C9A961"     # optional second accent
+    cap_active: "#D4AF37"  # colour of the word being spoken in the captions
+  fonts:
+    serif: "Playfair Display"
+    sans: "Plus Jakarta Sans"
+  broll: {}                # optional overrides for HyperFrames b-roll: bg, ink, accent, card, muted
+
+cta:
+  text: ""                 # end card, e.g. "Follow for more"
+  url: ""                  # e.g. a handle or a short link
+
+tone: ""                   # 2-3 words, e.g. "direct, casual, no jargon"
+
+# Hard limits for cut AND overlays. Health creators: no healing promises (in Germany: HWG).
+# Finance creators: no return promises.
+no_gos: []
+
+text_bans:                 # checked by code before every render
+  em_dash: true            # no "—" in on-screen text
+  dates: true              # no dates, months or years on screen (evergreen)
+
+# AI tells (references/ai-tells.md) that ARE the brand, e.g. purple-blue for a purple brand.
+ai_tells_allowed: []
+
+# Whisper mishearings: wrong -> right. Applied to captions automatically; grows with every video.
+pronunciation_fixes: {}
+
+captions:
+  font: sans               # sans (bold) or serif (italic); always one line
+  y: null                  # caption line position; null = below the head, measured per video
+  style: box               # box or plain
+
+hookbar:
+  seconds: 3               # the white hook bar at the start stays this long
+
+music:
+  enabled: false           # only on request, with a track the user owns
+  file: null
+
+# Folders. ~ is fine.
+workspace: ~/M15sEditor    # Remotion engine, work/<slug>/ edit folders, public/, out/
+delivery_dir: null         # finished versions: <delivery_dir>/<NN>_<slug>/ ; null = work/<slug>/VIDEOS
+assets_dir: null           # the creator's own images and proof; null = ~/.m15s-ai-editor/assets

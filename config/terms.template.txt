@@ -1,0 +1,2 @@
+# Words Whisper should spell this way, one per line: names, brands, coined terms.
+# Used as the transcription vocabulary. Blank lines and lines starting with # are ignored.

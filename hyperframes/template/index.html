@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>__TITLE__</title>
+<!--
+  m15s-ai-editor b-roll beat (HyperFrames, 1080x1920, __SECONDS__ s at 30 fps).
+  tools/broll.py copies this folder and fills the __PLACEHOLDERS__; build from here, never from zero.
+  One metaphor per beat, motion until the last frame, no emoji (drawn SVG/CSS only).
+  Keep content inside y 480-1350: the Remotion broll beat darkens the top 28 % and bottom 34 %,
+  and captions run over the lower third.
+-->
+<style>
+/* Fonts are local: a Google Fonts @import fails in the sandboxed render. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:block;src:url("assets/fonts/f0.woff2") format("woff2");}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:block;src:url("assets/fonts/f1.woff2") format("woff2");}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400 600;font-display:block;src:url("assets/fonts/f2.woff2") format("woff2");}
+
+:root{
+  --bg:__BG__;        /* creator.yaml brand.colors.bg */
+  --ink:__INK__;      /* text */
+  --accent:__ACCENT__;/* one accent, used sparingly */
+  --card:__CARD__;    /* card surface */
+  --muted:__MUTED__;  /* secondary text, rules */
+}
+
+html,body{margin:0;padding:0;background:var(--bg);}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:'Inter',sans-serif;color:var(--ink);}
+
+/* Kicker: mono, tracked, one key word in the accent via <b>. */
+.kicker{position:absolute;top:520px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:.24em;color:var(--muted);white-space:nowrap;will-change:opacity,transform;}
+.kicker b{color:var(--accent);}
+
+/* Card: the stage for the metaphor. Inside the safe zone (y 480-1350). */
+.card{position:absolute;left:90px;top:600px;width:900px;height:640px;background:var(--card);border-radius:28px;box-shadow:0 40px 80px -30px rgba(0,0,0,.45);padding:32px 36px;box-sizing:border-box;will-change:transform,opacity;}
+
+/* Window bar for editor / terminal / browser replicas. */
+.wbar{height:56px;display:flex;align-items:center;position:relative;margin:-32px -36px 24px;border-bottom:1px solid rgba(127,127,127,.18);}
+.dots{display:flex;gap:9px;padding-left:22px;}
+.dots i{width:13px;height:13px;border-radius:50%;display:inline-block;background:var(--muted);opacity:.55;}
+.wt{position:absolute;left:0;right:0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--muted);font-weight:700;}
+
+/* Fill bar: needs display:block + width, else invisible under scaleX. */
+.fill{display:block;width:100%;height:100%;border-radius:8px;background:var(--accent);transform:scaleX(0);transform-origin:left;will-change:transform;}
+
+/* Gauge needle: always an HTML div, never an SVG <line> (renders broken). */
+.needle{position:absolute;width:8px;height:170px;background:var(--ink);border-radius:4px;transform-origin:50% 100%;will-change:transform;}
+
+/* Payoff line under the card, still above the caption zone. */
+.foot{position:absolute;left:50%;top:1270px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;letter-spacing:.12em;color:var(--ink);white-space:nowrap;will-change:transform,opacity;}
+.foot b{color:var(--accent);}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="root" data-start="0" data-width="1080" data-height="1920" data-duration="__SECONDS__">
+  <div class="kicker" id="kick">CONTEXT&nbsp;&middot;&nbsp;<b>KEY&nbsp;WORD</b></div>
+
+  <!-- ===== Build the metaphor here: one story across the whole beat ===== -->
+  <div class="card" id="card">
+    <div class="wbar"><div class="dots"><i></i><i></i><i></i></div><span class="wt">title</span></div>
+    <!-- content -->
+  </div>
+
+  <div class="foot" id="foot">PAYOFF&nbsp;IN&nbsp;<b>3&nbsp;WORDS</b></div>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+const D = __SECONDS__;                 // beat length in seconds
+const tl = gsap.timeline({ paused: true });
+/* Rules: paused + registered timeline. No Math.random / Date.now. No repeat:-1 (finite repeats only).
+   No relative values (x:'+=') in keyframe chains with repeat. No second tween on the same property
+   while the first still runs. Format thousands by hand, never toLocaleString. */
+
+tl.from('#kick', { y: -24, opacity: 0, duration: .4, ease: 'power2.out' }, 0.05);
+tl.from('#card', { y: 60, opacity: 0, scale: .97, duration: .55, ease: 'power3.out' }, 0.1);
+
+/* ===== 0.5 s to D-1.0 s: the metaphor plays =====
+   Counter:    const o={v:0}; tl.to(o,{v:96,duration:1.2,ease:'power1.inOut',onUpdate:()=>{el.textContent=Math.round(o.v)+'%';}},t);
+   Typewriter: tl.to(o,{i:txt.length,ease:'steps('+txt.length+')',onUpdate:...});
+   SVG draw:   strokeDasharray=len, strokeDashoffset len -> 0 (getTotalLength). */
+
+/* ===== Payoff by about D*0.6, then keep something alive to the last frame ===== */
+tl.from('#foot', { y: 30, opacity: 0, duration: .4, ease: 'back.out(1.6)' }, D * 0.6);
+tl.to('#card', { scale: 1.015, duration: D - 0.7, ease: 'none' }, 0.65);
+
+window.__timelines["root"] = tl;
+</script>
+</body>
+</html>

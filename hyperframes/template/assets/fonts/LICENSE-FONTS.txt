@@ -1,0 +1,7 @@
+The fonts in this folder are licensed under the SIL Open Font License 1.1:
+
+- f0.woff2: Inter (Copyright The Inter Project Authors, https://github.com/rsms/inter)
+- f1.woff2: JetBrains Mono (Copyright JetBrains s.r.o., https://github.com/JetBrains/JetBrainsMono)
+- f2.woff2: Newsreader (Copyright The Newsreader Project Authors, https://github.com/productiontype/Newsreader)
+
+Full text of the SIL OFL 1.1: https://openfontlicense.org/open-font-license-official-text/
