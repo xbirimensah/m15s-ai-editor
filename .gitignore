@@ -20,3 +20,4 @@ renders/
 *.mov
 *.wav
 *.mp3
+!hyperframes/skills/**

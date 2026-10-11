@@ -3,6 +3,7 @@
 | Part | Where | Licence |
 |---|---|---|
 | NextWork AI video editor (ai-editor, creator-teardown) | `nextwork/` | MIT, Copyright (c) 2026 NextWork: `nextwork/LICENSE`, `nextwork/NOTICE`, its own notices in `nextwork/THIRD_PARTY_NOTICES.md` |
+| HyperFrames skills (HeyGen), release in `hyperframes/plugin.json` | `hyperframes/skills/` | Apache-2.0: `hyperframes/LICENSE`; provenance and changes (test files left out) in `hyperframes/VENDORED.md` |
 | Inter, JetBrains Mono, Newsreader fonts | `hyperframes/template/assets/fonts/` | SIL Open Font License 1.1: `LICENSE-FONTS.txt` there |
 
 Installed by `setup/install.sh`, not shipped in this repo:
@@ -10,7 +11,7 @@ Installed by `setup/install.sh`, not shipped in this repo:
 | Package | Licence |
 |---|---|
 | Remotion (`remotion`, `@remotion/*`) | Remotion License: free for individuals and small companies; larger companies need a company licence (remotion.dev/license) |
-| HyperFrames CLI (`npx hyperframes`) | see its npm package |
+| HyperFrames CLI (`hyperframes`, pinned to the bundled release) | Apache-2.0 |
 | GSAP | GSAP Standard License (free, including commercial use) |
 | mlx-whisper, Whisper large-v3-turbo weights | MIT |
 | OpenCV, NumPy, Pillow, PyYAML | Apache 2.0 / BSD / HPND / MIT |

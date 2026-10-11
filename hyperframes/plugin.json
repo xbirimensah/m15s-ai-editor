@@ -1,0 +1,8 @@
+{
+  "name": "hyperframes",
+  "version": "0.8.147",
+  "description": "HyperFrames skills bundled in m15s-ai-editor (plugin mode: no run-time skill installs, CLI pinned)",
+  "source": "https://github.com/heygen-com/hyperframes/tree/v0.8.147",
+  "commit": "d4dd6c097d22ca890c0eea401eaebf550ce10fae",
+  "license": "Apache-2.0"
+}

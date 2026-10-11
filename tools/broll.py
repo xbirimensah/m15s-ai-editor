@@ -8,8 +8,8 @@
 new     copies hyperframes/template into <workspace>/work/<slug>/broll/<NN-name>/, portrait 1080x1920,
         the beat length set, the creator's brand colours filled in, GSAP copied in locally (renders work
         offline). The agent builds the metaphor in its index.html (look: broll-style.md in the config home).
-check   npx hyperframes lint, then check --strict. Both must report 0 errors and 0 warnings.
-render  npx hyperframes render -> <workspace>/public/broll/<slug>-<NN-name>.mp4 (30 fps, delivery
+check   hyperframes lint, then check --strict (the bundled release). Both must report 0 errors and 0 warnings.
+render  hyperframes render -> <workspace>/public/broll/<slug>-<NN-name>.mp4 (30 fps, delivery
         quality), verifies size, fps and length, writes a middle and a last frame to qa/, and prints the
         beat to paste into videos/<slug>.json. --at-word places it on the first word that matches
         in words.engine.json; --from-frame sets it directly.
@@ -31,6 +31,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config  # noqa: E402
 
 TEMPLATE = config.SKILL / "hyperframes" / "template"
+HF_ROOT = config.SKILL / "hyperframes"                      # a HyperFrames plugin root (plugin.json)
+HF_CLI = HF_ROOT / "skills" / "hyperframes" / "scripts" / "plugin-cli.mjs"
 FPS = 30
 MAX_FRAMES = 99
 DEFAULTS = {"BG": "#F6F5F2", "INK": "#151515", "ACCENT": "#2F6FEB", "CARD": "#FFFFFF", "MUTED": "#7A7770"}
@@ -81,12 +83,13 @@ def palette() -> dict:
     return out
 
 
-def hf(*args, cwd=None):
-    """The workspace's own HyperFrames (instant); npx only as a fallback (resolves the package each run)."""
+def hf(*args):
+    """HyperFrames through its own plugin launcher: exactly the bundled release (plugin.json), no run-time
+    skill installs, run in the workspace (its node_modules holds that same version, so it is instant)."""
+    if not (HF_ROOT / "plugin.json").exists() or not HF_CLI.exists():
+        fail(f"the HyperFrames bundle is missing in {HF_ROOT}: bash tools/sync_hyperframes.sh")
     env = {**os.environ, "HYPERFRAMES_NO_TELEMETRY": "1"}
-    local = config.engine() / "node_modules" / ".bin" / "hyperframes"
-    cmd = [str(local)] if local.exists() else ["npx", "--yes", "hyperframes"]
-    return subprocess.run([*cmd, *map(str, args)], cwd=cwd, env=env)
+    return subprocess.run(["node", str(HF_CLI), *map(str, args)], cwd=config.engine(), env=env)
 
 
 def cmd_new(a):

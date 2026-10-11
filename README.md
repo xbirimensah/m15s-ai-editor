@@ -12,7 +12,9 @@ Kimi Code, Gemini CLI, Cursor and others. It combines two editing systems:
   stumbles, an approval page, hook variants, clips from long videos, creator teardowns, creator-style
   edits with live captures, product films and NLE export.
 
-Plus **HyperFrames** for custom animated b-roll that drops into the Remotion edit.
+Plus **HyperFrames** (HeyGen, Apache-2.0), bundled complete and pinned to one release: custom b-roll
+beats that drop into the Remotion edit, and every HyperFrames workflow (designed captions, overlay cards,
+faceless explainers, motion graphics, launch promos, music videos, slideshows, PR explainers, Figma).
 
 You approve three things: the cut plan, the cut, the stills sheet. Every correction you give becomes
 a rule, so you never say it twice.
@@ -72,8 +74,8 @@ raw take ─ transcribe (mlx-whisper) ─ quoted cuts (spans.json) ─ paper edi
         ─ stills sheet + critic ─ [approve stills] ─ render ─ 4:5 crop check ─ numbered delivery
 ```
 
-Details: `SKILL.md` and `references/` (`cut.md`, `motion.md`, `broll.md`, `extras.md`, `taste.md`,
-`ai-tells.md`). Contributing: `AGENTS.md`.
+Details: `SKILL.md` and `references/` (`cut.md`, `motion.md`, `broll.md`, `hyperframes.md`, `extras.md`,
+`taste.md`, `ai-tells.md`). Contributing: `AGENTS.md`.
 
 ## Requirements
 
@@ -84,5 +86,5 @@ ElevenLabs), Modal, GitHub Actions or AWS for cloud renders.
 ## Licences
 
 This repo: MIT (`LICENSE`). Third-party parts: `THIRD_PARTY_NOTICES.md` (NextWork ai-video-editor
-MIT, fonts under the SIL Open Font License). Remotion is installed from npm under its own licence;
+MIT, HyperFrames skills Apache-2.0, fonts under the SIL Open Font License). Remotion is installed from npm under its own licence;
 companies above its free-use threshold need a Remotion company licence (remotion.dev/license).

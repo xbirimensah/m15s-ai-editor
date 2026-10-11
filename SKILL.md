@@ -5,12 +5,13 @@ description: >
   Cuts raw takes (retakes, false starts, director talk, pauses) by quoting the transcript and joins
   them seamlessly on the waveform; adds Remotion motion graphics (3-second hook bar, one-line
   captions, kickers, panels, diagrams, stats, end card) and HyperFrames b-roll; approval gates before
-  every render. Also hook variants, clips from long videos or podcasts, creator teardowns,
-  creator-style edits, product films and export to Final Cut, Premiere, Resolve or CapCut. Learns
+  every render. Bundles HyperFrames complete: designed captions, overlay cards, faceless explainers,
+  motion graphics, launch promos, music videos, slideshows. Also hook variants, clips from long videos
+  or podcasts, creator teardowns, creator-style edits and export to Final Cut, Premiere, Resolve or CapCut. Learns
   every correction as a rule. Use when the user drops raw footage or a video path, or says "edit this
-  video", "cut this", "schneide das Video", "remove the pauses", "motion graphics", "captions",
-  "b-roll", "hook bar", "make it look like @creator", "clips from this podcast", "export to Final
-  Cut", or gives feedback on a cut or render.
+  video", "cut this", "schneide das Video", "motion graphics", "captions",
+  "b-roll", "hook bar", "make it look like @creator", "clips from this podcast", or gives
+  feedback on a cut or render.
 ---
 
 # m15s AI Editor
@@ -53,6 +54,7 @@ skill, say so once and follow the rule). creator.yaml missing or incomplete: the
 | Only the cut, retakes and pauses out | `references/cut.md` |
 | Motion graphics / captions / overlays on a cut (also an external cut) | `references/motion.md` |
 | A b-roll moment animated, an app or tool shown | `references/broll.md` (inside phase 2) |
+| A video made in HyperFrames: designed captions or overlay cards on a talking head, an explainer without footage, a motion graphic or logo sting, a launch promo, a music video, a slideshow, a PR explainer, a Figma import | `references/hyperframes.md` |
 | Alternate hooks as separate versions | `references/cut.md` step 7 |
 | Clips from a long video or podcast, a creator teardown, a creator-style edit with live captures, a product film from a website, NLE export | `references/extras.md` |
 | A correction ("too slow", "captions higher", "always ...") | `references/taste.md`, then redo |
@@ -94,6 +96,8 @@ Between steps, one line on what happens next. Long renders run in the background
   same method as standalone tools.
 - `engine/` the Remotion overlay engine (copied into the workspace by setup; spec types in
   `engine/src/spec.ts`, example `engine/videos/example.json`).
-- `hyperframes/template/` the b-roll starting point. `agents/stills-critic.md` the sheet reviewer.
+- `hyperframes/` the complete HyperFrames skill set (Apache-2.0) as a plugin root, pinned to one release
+  (`plugin.json`, `tools/sync_hyperframes.sh`), plus `hyperframes/template/` the b-roll starting point.
+- `agents/stills-critic.md` the sheet reviewer.
 - `nextwork/` NextWork ai-editor + creator-teardown (MIT), used by phase 1 and the extras.
 - `config/*.template.*` what setup copies into the config home.

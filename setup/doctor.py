@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import json
 import shutil
 import subprocess
 import sys
@@ -16,9 +17,10 @@ import config  # noqa: E402
 REQUIRED_CREATOR = ("language", "format", "brand", "captions", "hookbar", "workspace")
 
 
-def version(cmd) -> str:
+def version(cmd, cwd=None, last=False) -> str:
     try:
-        return subprocess.run(cmd, capture_output=True, text=True, timeout=60).stdout.strip().splitlines()[0]
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=120, cwd=cwd).stdout.strip().splitlines()
+        return (out[-1] if last else out[0]) if out else ""
     except (OSError, IndexError, subprocess.TimeoutExpired):
         return ""
 
@@ -58,9 +60,15 @@ def main():
     line(same_src, "engine code", "matches the skill" if same_src else "workspace src differs from the skill",
          "bash setup/install.sh (copies the skill's engine code)")
 
-    hf_bin = ws / "node_modules" / ".bin" / "hyperframes"
-    hf = version([str(hf_bin), "--version"]) if hf_bin.exists() else ""
-    line(bool(hf), "hyperframes", hf or "not installed in the workspace", "bash setup/install.sh (npm install)")
+    manifest = config.SKILL / "hyperframes" / "plugin.json"
+    want = json.loads(manifest.read_text()).get("version") if manifest.exists() else None
+    skills = len(list((config.SKILL / "hyperframes" / "skills").glob("*/SKILL.md")))
+    launcher = config.SKILL / "hyperframes" / "skills" / "hyperframes" / "scripts" / "plugin-cli.mjs"
+    have = version(["node", str(launcher), "--version"], cwd=ws, last=True) if want and launcher.exists() else ""
+    line(bool(want) and have == want, "hyperframes",
+         f"{have} bundled, {skills} skills, plugin mode" if have == want else
+         f"want {want or '(no bundle)'}, got {have or 'nothing'}",
+         "bash tools/sync_hyperframes.sh, then bash setup/install.sh")
 
     taste = config.home() / "taste.json"
     print(f"{'ok ' if taste.exists() else '-- '}  {'taste':<14} {taste if taste.exists() else 'no rules yet (they come with corrections)'}")

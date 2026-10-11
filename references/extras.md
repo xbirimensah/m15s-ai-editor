@@ -67,8 +67,10 @@ say so when the user picks it.
 
 ## Product launch film from a website
 
-`<skill>/nextwork/ai-editor/skills/product-video/SKILL.md` when the user pastes a product website and
-wants a launch or demo film: brief, story beats, recorded UI, music with a recorded licence.
+Two engines: HyperFrames `product-launch-video` (`references/hyperframes.md`) for a designed promo from
+a URL, script or brief; `<skill>/nextwork/ai-editor/skills/product-video/SKILL.md` when the film is a
+recorded walk through a real web app (brief, story beats, recorded UI, music with a recorded licence).
+Ask which one when it is not obvious.
 
 ## Export to an editor (Final Cut, Premiere, Resolve, CapCut)
 

@@ -9,7 +9,9 @@ are for changing the skill itself.
 - `tools/` the Python/bash tools the skill runs (`config.py` resolves every path).
 - `engine/` the Remotion overlay engine; `setup/install.sh` copies `src/` and `scripts/` into the
   user's workspace, so the workspace never holds hand edits.
-- `hyperframes/template/` the b-roll starting point.
+- `hyperframes/` the HyperFrames skills as a plugin root (`plugin.json` pins the release). Never edit
+  `hyperframes/skills/` by hand: `bash tools/sync_hyperframes.sh [version]` replaces it from upstream and
+  pins the engine's CLI to the same version. `hyperframes/template/` is ours (the b-roll start).
 - `nextwork/` vendored NextWork AI video editor (MIT). Keep local changes small and marked
   "local patch"; list them in `THIRD_PARTY_NOTICES.md`.
 

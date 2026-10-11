@@ -4,8 +4,8 @@ Custom animated b-roll (HTML + GSAP rendered by HyperFrames) for moments where a
 tool or workflow and no real asset exists, or where an idea needs motion a card cannot give. The MP4
 drops into the Remotion overlay as a `broll` beat. Remotion stays the editor; HyperFrames makes clips.
 
-Tool: `python3 <skill>/tools/broll.py`. Needs Node 22+; HyperFrames is installed in the
-workspace by setup (`node_modules/.bin/hyperframes`, local renders need no account).
+Tool: `python3 <skill>/tools/broll.py`. HyperFrames is bundled (`<skill>/hyperframes/`, plugin mode,
+`references/hyperframes.md`); the tool runs its pinned CLI. Local renders need no account.
 
 ## When
 
@@ -21,8 +21,9 @@ workspace by setup (`node_modules/.bin/hyperframes`, local renders need no accou
    = beat N, no more, no less. Write the table before building.
 2. `python3 <skill>/tools/broll.py new <slug> NN-name [--seconds 3]` scaffolds `work/<slug>/broll/NN-name/index.html` (1080x1920,
    the brand colours, local GSAP and fonts). Read `<config home>/broll-style.md` for the look.
-3. Build the metaphor in `index.html` (the template's comments hold the recipes). For the authoring
-   contract load the `hyperframes-core` skill if it is installed; otherwise follow the template.
+3. Build the metaphor in `index.html` (the template's comments hold the recipes). The authoring
+   contract is `<skill>/hyperframes/skills/hyperframes-core/SKILL.md`; motion recipes are in
+   `hyperframes-animation`, named blocks in `hyperframes-registry` (search before building by hand).
    Real facts only: look up real names, labels, install commands; never invent a number (no number
    found -> the visual without one). Fix Whisper mishearings in any on-screen word.
 4. `python3 <skill>/tools/broll.py check <slug> NN-name`: lint + check --strict, 0 errors and 0 warnings. One folder at a time.

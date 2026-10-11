@@ -7,7 +7,7 @@ Blocks, in every tracked (or, with --staged, every staged) text file:
   - each line of <config home>/private-terms.txt (names, handles, clients, brand words), plus the
     creator's own values from creator.yaml (name, handle, website, CTA, brand colours): the list of
     what to hide lives outside the repo, so the list itself never leaks
-  - e-mail addresses (example.com / noreply addresses excepted)
+  - e-mail addresses (example.com / noreply addresses, and upstream authors inside vendored code, excepted)
   - home and volume paths (/Users/<name>/, /home/<name>/, /Volumes/<disk>/)
   - API-key shapes (sk-, gsk_, ghp_, AIza, xox., AKIA)
   - with --staged (the pre-commit hook): a commit author whose name or e-mail is private, or whose
@@ -30,6 +30,7 @@ SKIP_TOP = {"out", "work", "renders"}       # workspace-style folders, only at t
 SKIP_SUFFIX = {".png", ".jpg", ".jpeg", ".gif", ".mp4", ".mov", ".wav", ".mp3", ".woff2", ".woff", ".ttf",
                ".onnx", ".lock", ".ico", ".pdf", ".zip"}
 ALLOW_MARK = "privacy: allow"
+THIRD_PARTY = ("hyperframes/skills/", "nextwork/")   # vendored upstream code: its authors' public e-mails are fine
 PLACEHOLDER_USERS = {"me", "you", "user", "username", "name", "runner", "<name>", "<user>"}
 PATTERNS = {
     "email": re.compile(r"\b[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[A-Za-z]{2,}\b"),
@@ -99,7 +100,7 @@ def scan(root: Path, staged: bool = False) -> list[str]:
                 hits.append(f"{rel}:{n}: private term {m.group(0)!r}")
             for kind, rx in PATTERNS.items():
                 for m in rx.finditer(line):
-                    if kind == "email" and SAFE_EMAIL.search(m.group(0)):
+                    if kind == "email" and (SAFE_EMAIL.search(m.group(0)) or rel.as_posix().startswith(THIRD_PARTY)):
                         continue
                     if kind == "home path" and m.group(1).lower() in PLACEHOLDER_USERS:
                         continue

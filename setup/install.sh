@@ -129,11 +129,15 @@ fi
 rm -f "$SILENT" "${SILENT%.wav}" "${SILENT%.wav}".json "${SILENT%.wav}".txt 2>/dev/null
 
 # --- 6. HyperFrames -----------------------------------------------------------
-HF="$WS/node_modules/.bin/hyperframes"
-if [ -x "$HF" ] && HYPERFRAMES_NO_TELEMETRY=1 "$HF" --version >/dev/null 2>&1; then
-  ok "HyperFrames $(HYPERFRAMES_NO_TELEMETRY=1 "$HF" --version 2>/dev/null | tail -1)"
+# HyperFrames is part of the editor: the bundled release (hyperframes/plugin.json) through its own launcher.
+HF_WANT="$(node -p "require('$SKILL/hyperframes/plugin.json').version" 2>/dev/null)"
+[ -n "$HF_WANT" ] || { err "HyperFrames bundle missing (hyperframes/plugin.json): bash tools/sync_hyperframes.sh"; exit 1; }
+HF_HAVE="$(cd "$WS" && HYPERFRAMES_NO_TELEMETRY=1 node "$SKILL/hyperframes/skills/hyperframes/scripts/plugin-cli.mjs" --version 2>/dev/null | tail -1)"
+if [ "$HF_HAVE" = "$HF_WANT" ]; then
+  ok "HyperFrames $HF_HAVE (bundled skills, plugin mode)"
 else
-  warn "HyperFrames not installed in the workspace (npm install there); b-roll beats need it"
+  err "HyperFrames $HF_WANT did not run (got '${HF_HAVE:-nothing}'): npm install in $WS, then run this again"
+  exit 1
 fi
 
 # --- 7. Repo guard + skill link ----------------------------------------------
